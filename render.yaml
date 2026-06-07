@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: f1-designer-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        sync: false
+    disk:
+      name: fastf1-cache
+      mountPath: /app/fastf1_cache
+      sizeGB: 1

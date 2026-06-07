@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* ============================
+   CUSTOM THEME LAYER
+   ============================ */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-racing: 'Orbitron', sans-serif;
+  --color-f1-red: #E10600;
+  --color-f1-dark: #0A0A0A;
+  --color-f1-carbon: #1A1A2E;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #000;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+@layer components {
+  .glass-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(to bottom right, rgba(17, 24, 39, 0.8), transparent);
+    border: 1px solid rgba(55, 65, 81, 1);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3), 0 0 45px rgba(239, 68, 68, 0.1);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 45px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Grid background used on all pages */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-bg > div {
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(rgba(239, 68, 68, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Toast notifications */
+  .toast-container {
+    position: fixed;
+    top: 80px;
+    right: 24px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
+  }
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #374151;
+    background: #1f2937;
+    color: #fff;
+    font-size: 0.85rem;
+    animation: slideIn 0.3s ease-out;
+  }
+  .toast.success { border-color: rgba(16, 185, 129, 0.5); }
+  .toast.error { border-color: rgba(239, 68, 68, 0.5); }
+  .toast.warning { border-color: rgba(245, 158, 11, 0.5); }
+  .toast.info { border-color: rgba(59, 130, 246, 0.5); }
+  .toast-message { flex: 1; }
+  .toast-actions { display: flex; gap: 6px; align-items: center; }
+  .toast-dismiss-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 4px;
+  }
+  .toast-dismiss-btn:hover { color: #fff; }
+  .toast-retry-btn {
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 6px;
+    color: #60a5fa;
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+  }
+  .modal {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 560px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #fff;
+  }
+  .modal h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .modal p {
+    color: #9ca3af;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+}
