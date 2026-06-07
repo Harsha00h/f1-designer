@@ -4,12 +4,8 @@ services:
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile
-    plan: starter
+    plan: free
     healthCheckPath: /api/health
     envVars:
       - key: ALLOWED_ORIGINS
         sync: false
-    disk:
-      name: fastf1-cache
-      mountPath: /app/fastf1_cache
-      sizeGB: 1
